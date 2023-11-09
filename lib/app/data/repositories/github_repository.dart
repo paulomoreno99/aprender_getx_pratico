@@ -7,7 +7,7 @@ class GithubRepository {
 
   GithubRepository({required this.dio,});
 
-  Future<List<GithubUserModel>>   getGithubUsers() async {
+  Future<List<GithubUserModel>> getGithubUsers() async {
     final result = await dio.get('http://api.github.com/users');
 
     final List<GithubUserModel> users = [];
@@ -17,6 +17,18 @@ class GithubRepository {
     }
 
     return users;
+  }
+
+  Future<GithubUserModel> getGithubUser ({required String username}) async {
+    final result = await dio.get('http://api.github.com/users/$username');
+
+    late GithubUserModel githubUser;
+
+    if (result.statusCode == 200) {
+      githubUser = GithubUserModel.fromMap(result.data);
+    }
+
+    return githubUser;
   }
 
 }

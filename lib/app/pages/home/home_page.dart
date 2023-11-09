@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:aprender_getx_pratico/app/data/repositories/github_repository.dart';
+import 'package:aprender_getx_pratico/app/pages/home/detalhes/detalhes_page.dart';
 import 'package:aprender_getx_pratico/app/pages/home/home_controller.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +77,9 @@ void initState() {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: () {},           
+              onTap: () {
+                Get.to(DetalhesPage(username: user.login));
+              },           
                          
             );
           },
