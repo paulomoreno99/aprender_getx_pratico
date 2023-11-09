@@ -38,19 +38,51 @@ void initState() {
         ? Center(child:CircularProgressIndicator())
         : _controller.users.isEmpty
         ? Center(
-          child: Text('Nenhum usuario encontrado!!'),
+          child: Text('Nenhum usuario encontrado!!',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 22.5,
+            fontWeight: FontWeight.bold,
+          ),),
+          
         )
-        :ListView.builder(
+        :ListView.separated(
+          separatorBuilder: (context, index) => const Divider(),
           itemCount: _controller.users.length,
           itemBuilder: (_, index) {
-            final item = _controller.users[index];
+            final user = _controller.users[index];
             return ListTile(
-              title: Text(item.login),
+              contentPadding: EdgeInsets.zero,
+              leading: CircleAvatar(
+                radius: 50,
+                backgroundColor: Theme.of(context).primaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: CircleAvatar(
+                    radius: 45,
+                    backgroundImage: NetworkImage(user.avatarUrl),
+                  ),),
+              ),
+              title: const Text(
+                'usuario',
+                style: TextStyle(color: Colors.black54,
+                
+              ),),
+              subtitle: Text(
+                user.login,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onTap: () {},           
+                         
             );
           },
-        );
-        
-      }));
-  
+        );}
+      ),
+      );
+   
   }
 }
