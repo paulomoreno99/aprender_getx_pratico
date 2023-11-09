@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_element
 
-import 'package:aprender_getx_pratico/app/data/repositories/github_repository.dart';
+import 'package:aprender_getx_pratico/app/pages/home/detalhes/detalhes_binding.dart';
 import 'package:aprender_getx_pratico/app/pages/home/detalhes/detalhes_controller.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +22,8 @@ class _DetalhesPageState extends State<DetalhesPage> {
   @override
   void initState() {
     super.initState();
-    _controller = DetalhesController(repository: GithubRepository(dio: Dio(),),);
+    setUpDetalhes();
+    _controller = Get.find<DetalhesController>();
     _controller.getGithubUser(username: widget.username);
   
   }
